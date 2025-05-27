@@ -140,24 +140,23 @@ const Skills = () => {
               
               <div className="relative z-10 h-full flex flex-col justify-between text-white">
                 <div>
-                  <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-500">
+                  <div className="text-4xl sm:text-3xl mb-2 md:mb-1 group-hover:scale-110 transition-transform duration-500">
                     {skill.icon}
                   </div>
-                  <h3 className="text-2xl font-bold mb-6 group-hover:text-yellow-200 transition-colors duration-300">
+                  <h3 className="text-xl md:text-lg font-bold mb-4 md:mb-2 group-hover:text-yellow-200 transition-colors duration-300">
                     {skill.title}
                   </h3>
                 </div>
-                
                 <div className="flex flex-wrap gap-2">
                   {skill.skills.map((skillItem, skillIndex) => (
                     <div
                       key={skillItem.name}
-                      className={`flex items-center gap-2 bg-white/20 text-white border-white/30 px-3 py-2 text-sm font-medium backdrop-blur-sm hover:bg-white/30 transition-all duration-300 group-hover:scale-105 rounded-full`}
-                      style={{ 
-                        animationDelay: `${(index * 150) + (skillIndex * 100)}ms` 
+                      className="flex items-center gap-2 bg-white/20 text-white border-white/30 px-2 py-1 text-xs md:text-sm font-medium backdrop-blur-sm hover:bg-white/30 transition-all duration-300 group-hover:scale-105 rounded-full"
+                      style={{
+                        animationDelay: `${(index * 150) + (skillIndex * 100)}ms`
                       }}
                     >
-                      <span className="text-lg">{skillItem.icon}</span>
+                      <span className="text-base md:text-lg">{skillItem.icon}</span>
                       <span>{skillItem.name}</span>
                     </div>
                   ))}
