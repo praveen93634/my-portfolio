@@ -113,7 +113,7 @@ const Contact = () => {
                 </div>
                 <a
                   href={myResume}
-                  download="Praveen_Kumar_Resume.png"
+                  download="Praveen_Kumar_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
