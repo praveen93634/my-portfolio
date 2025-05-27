@@ -20,7 +20,7 @@ const Experience = () => {
             </h2>
             
             <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white mb-8">
-              <h3 className="text-2xl font-bold mb-2">Full Stack Developer</h3>
+              <h3 className="text-2xl font-bold mb-2"><span>Upturn Technology - </span>Full Stack Developer</h3>
               <p className="text-blue-100 mb-4">1 Year Experience</p>
               <p className="text-blue-50">
                 Specialized in MEAN stack development with a focus on creating 
