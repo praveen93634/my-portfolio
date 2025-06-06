@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Mail, Github, Linkedin, MapPin, Phone, Download, FileText } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import myResume from "@/asset/praveen Kumar Updated Resume (1).pdf"
+import myResume from "@/asset/praveen Kumar Updated Resume (7).pdf"
 const Contact = () => {
   const { toast } = useToast();
 

@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Github, Linkedin, Mail, Download } from "lucide-react";
-import myResume from "@/asset/praveen Kumar Updated Resume (1).pdf"
+import myResume from "@/asset/praveen Kumar Updated Resume (7).pdf"
 
 const Hero = () => {
   return (
