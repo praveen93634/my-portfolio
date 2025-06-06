@@ -34,8 +34,8 @@ const Contact = () => {
   ];
 
   const handleSendMessage = () => {
-    const subject = encodeURIComponent("Let's discuss your project");
-    const body = encodeURIComponent("Hi Praveen,\n\nI would like to discuss a potential project with you.\n\nBest regards,");
+    const subject = encodeURIComponent("Let's discuss about your project and experience");
+    const body = encodeURIComponent("Hi Praveen,\n\nI would like to discuss a job oppertunity.\n\nBest regards,");
     window.location.href = `mailto:praveenramesh5267@gmail.com?subject=${subject}&body=${body}`;
   };
 
