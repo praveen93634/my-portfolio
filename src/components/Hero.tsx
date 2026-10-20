@@ -108,10 +108,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCommandPalette }) => {
             <span className="inline-block bg-[#e7ff7d] text-black px-2.5 sm:px-3 py-0.5 rounded-lg font-semibold my-1">
               a Full Stack Developer
             </span>{' '}
-            at{' '}
-            <span className="inline-block bg-[#afe3ff] text-black px-2.5 sm:px-3 py-0.5 rounded-lg font-semibold my-1">
+            {/* at{' '} */}
+            {/* <span className="inline-block bg-[#afe3ff] text-black px-2.5 sm:px-3 py-0.5 rounded-lg font-semibold my-1">
               TIC Global
-            </span>{' '}
+            </span>{' '} */}
             shipping production ERP & logistics platforms.
           </h1>
 
