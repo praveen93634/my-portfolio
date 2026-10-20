@@ -1,177 +1,208 @@
 
-import { Badge } from "@/components/ui/badge";
-import { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { 
+  Code2, 
+  Layers, 
+  Server, 
+  Database, 
+  Terminal, 
+  Cloud, 
+  Check,
+  LucideIcon
+} from 'lucide-react';
 
-const Skills = () => {
-  const [visibleCards, setVisibleCards] = useState<number[]>([]);
+interface SkillCategory {
+  title: string;
+  tag: string;
+  icon: LucideIcon;
+  description: string;
+  skills: Array<{ name: string; level: string; note?: string }>;
+}
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = parseInt(entry.target.getAttribute('data-index') || '0');
-            setVisibleCards(prev => [...prev, index]);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+export const Skills: React.FC = () => {
+  const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
 
-    const cards = document.querySelectorAll('.skill-card');
-    cards.forEach(card => observer.observe(card));
-
-    return () => observer.disconnect();
-  }, []);
-
-  const skills = [
+  const categories: SkillCategory[] = [
     {
-      title: "Frontend Development",
+      title: 'Languages',
+      tag: 'CORE_LANGUAGES',
+      icon: Code2,
+      description: 'Typed systems, object-oriented design, and asynchronous runtime execution.',
       skills: [
-        { name: "Angular", icon: "🅰️" },
-        { name: "HTML5", icon: "🌐" },
-        { name: "CSS3", icon: "🎨" },
-        { name: "JavaScript", icon: "🟨" },
-        { name: "TypeScript", icon: "🔷" }
-      ],
-      color: "from-blue-500 to-cyan-500",
-      size: "large",
-      icon: "💻"
+        { name: 'TypeScript', level: 'Production Daily', note: 'Strict typing across frontend & backend' },
+        { name: 'JavaScript (ES6+)', level: 'Advanced', note: 'Closures, Event Loop, Async/Await' },
+        { name: 'Java', level: 'Proficient', note: 'OOP Principles, Collections, Algorithms' }
+      ]
     },
     {
-      title: "Backend Development",
+      title: 'Frontend Ecosystem',
+      tag: 'CLIENT_APPS',
+      icon: Layers,
+      description: 'Single-page applications, responsive interfaces, and state synchronization.',
       skills: [
-        { name: "Node.js", icon: "🟢" },
-        { name: "Express.js", icon: "🚀" }
-      ],
-      color: "from-green-500 to-emerald-500",
-      size: "medium",
-      icon: "⚙️"
+        { name: 'Angular', level: 'Production', note: 'RxJS, Services, Routing, Directives' },
+        { name: 'React.js', level: 'Advanced', note: 'Hooks, Context, Modern Patterns' },
+        { name: 'Next.js 14', level: 'Production', note: 'Admin portals, Server Actions, SSR' },
+        { name: 'Tailwind CSS', level: 'Expert', note: 'Rapid responsive utility styling' },
+        { name: 'HTML5 & CSS3', level: 'Core', note: 'Semantic accessibility & layouts' }
+      ]
     },
     {
-      title: "Database",
+      title: 'Backend & APIs',
+      tag: 'SERVER_RUNTIME',
+      icon: Server,
+      description: 'High-throughput microservices, REST endpoints, and caching strategies.',
       skills: [
-        { name: "MongoDB", icon: "🍃" },
-      ],
-      color: "from-purple-500 to-pink-500",
-      size: "medium",
-      icon: "🗄️"
+        { name: 'Node.js (TypeScript)', level: 'Production Core', note: 'Event-driven asynchronous backends' },
+        { name: 'Express.js', level: 'Advanced', note: 'Middleware, Routing, Error handlers' },
+        { name: 'REST API Development', level: 'Expert', note: 'RESTful architecture, OpenAPI, JWT' },
+        { name: 'Redis', level: 'Production', note: 'In-memory caching & session stores' },
+        { name: 'Socket.io', level: 'Production', note: 'Bidirectional sub-second real-time streams' }
+      ]
     },
     {
-      title: "Programming Languages",
+      title: 'Databases & Storage',
+      tag: 'PERSISTENCE',
+      icon: Database,
+      description: 'Document schemas, aggregation pipelines, and high-performance querying.',
       skills: [
-        { name: "JavaScript", icon: "🟨" },
-        { name: "Java", icon: "☕" },
-        { name: "C++", icon: "⚡" }
-      ],
-      color: "from-orange-500 to-red-500",
-      size: "large",
-      icon: "👨‍💻"
+        { name: 'MongoDB', level: 'Production Core', note: 'Compound indexes, Aggregations, Performance' },
+        { name: 'Firebase', level: 'Production', note: 'Google Auth, Cloud Firestore, Session security' }
+      ]
     },
     {
-      title: "Development Tools",
+      title: 'Core Computer Science',
+      tag: 'FOUNDATIONS',
+      icon: Terminal,
+      description: 'Algorithmic efficiency, time/space complexity, and clean system design.',
       skills: [
-        { name: "Git", icon: "📚" },
-        { name: "GitHub", icon: "🐙" },
-        { name: "VS Code", icon: "💙" },
-        {name:"Postman", icon: "📬" }
-      ],
-      color: "from-gray-600 to-gray-800",
-      size: "medium",
-      icon: "🔧"
+        { name: 'Data Structures & Algorithms', level: '180+ LeetCode', note: 'Binary Search, DP, Trees, Graphs' },
+        { name: 'System Design Fundamentals', level: 'Proficient', note: 'Scalability, Load Balancing, Caching' },
+        { name: 'Object-Oriented Programming (OOP)', level: 'Expert', note: 'Inheritance, Polymorphism, Abstraction' },
+        { name: 'Design Patterns', level: 'Proficient', note: 'Factory, Singleton, Observer, Strategy' }
+      ]
     },
     {
-      title: "Problem Solving",
+      title: 'Tools, DevOps & Cloud',
+      tag: 'INFRASTRUCTURE',
+      icon: Cloud,
+      description: 'Production cloud deployments, reverse proxies, and collaboration workflows.',
       skills: [
-        { name: "DSA", icon: "🔢" },
-        { name: "Algorithms", icon: "🧮" },
-        { name: "Logic", icon: "🎯" }
-      ],
-      color: "from-indigo-500 to-purple-600",
-      size: "medium",
-      icon: "🧠"
+        { name: 'AWS (EC2)', level: 'Production', note: 'VM instances, Security groups, SSH' },
+        { name: 'Linux / Ubuntu', level: 'Advanced', note: 'Bash scripting, Daemons, Cron' },
+        { name: 'Nginx', level: 'Production', note: 'Reverse proxy, SSL termination, Load routing' },
+        { name: 'Git & GitHub / Bitbucket', level: 'Expert', note: 'Branching, PR reviews, CI integration' },
+        { name: 'Postman', level: 'Expert', note: 'API testing, Mock servers, Automations' }
+      ]
     }
   ];
 
-  const getGridClass = (size: string) => {
-    switch (size) {
-      case 'large': return 'md:col-span-2 md:row-span-2';
-      case 'medium': return 'md:col-span-2 md:row-span-1';
-      case 'small': return 'md:col-span-1 md:row-span-1';
-      default: return 'md:col-span-1 md:row-span-1';
-    }
-  };
+  const visibleCategories = selectedCategory === 'ALL'
+    ? categories
+    : categories.filter(c => c.tag === selectedCategory);
 
   return (
-    <section id="skills" className="py-24 px-6 bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 overflow-hidden">
-      <div className="container mx-auto max-w-7xl">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-6xl font-bold text-slate-900 dark:text-white mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
-            Technical Skills
+    <section id="skills" className="border-b border-[#e5e5e5] bg-white">
+      {/* Section Header */}
+      <div className="border-b border-[#e5e5e5]">
+        <div className="band-column py-12 flex items-center justify-center gap-4">
+          <span className="text-xl sm:text-2xl text-[#b5d251]">✦</span>
+          <h2 className="text-2xl sm:text-4xl font-normal text-[#1f2328] tracking-tight m-0">
+            Skills & Competencies
           </h2>
-          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            Technologies and tools I use to bring ideas to life
-          </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-6 rounded-full"></div>
+          <span className="text-xl sm:text-2xl text-[#b5d251]">✦</span>
         </div>
-        
-        {/* Perfectly aligned bento grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-[240px]">
-          {skills.map((skill, index) => (
-            <div 
-              key={skill.title}
-              data-index={index}
-              className={`skill-card group relative rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-700 cursor-pointer overflow-hidden ${getGridClass(skill.size)} ${
-                visibleCards.includes(index) 
-                  ? 'animate-scale-in opacity-100' 
-                  : 'opacity-0 translate-y-8'
+      </div>
+
+      {/* Category Filter Pills */}
+      <div className="border-b border-[#e5e5e5] bg-[#fafafa]">
+        <div className="band-column flex flex-wrap items-center justify-center gap-1.5 py-3 px-4">
+          <button
+            onClick={() => setSelectedCategory('ALL')}
+            className={`btn-tactile px-3.5 py-1.5 rounded-lg font-mono text-xs transition-colors ${
+              selectedCategory === 'ALL'
+                ? 'bg-white text-black font-semibold border border-[#d0d0d0] shadow-sm'
+                : 'text-[#59636e] hover:text-[#1f2328] hover:bg-[#eaeaea]'
+            }`}
+          >
+            All Categories
+          </button>
+          {categories.map((cat) => (
+            <button
+              key={cat.tag}
+              onClick={() => setSelectedCategory(cat.tag)}
+              className={`btn-tactile px-3.5 py-1.5 rounded-lg font-mono text-xs transition-colors ${
+                selectedCategory === cat.tag
+                  ? 'bg-white text-black font-semibold border border-[#d0d0d0] shadow-sm'
+                  : 'text-[#59636e] hover:text-[#1f2328] hover:bg-[#eaeaea]'
               }`}
-              style={{ 
-                animationDelay: `${index * 150}ms`,
-              }}
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${skill.color} opacity-90 group-hover:opacity-100 transition-opacity duration-500`}></div>
-              
-              {/* Animated background particles */}
-              <div className="absolute inset-0 opacity-20">
-                <div className="absolute top-4 right-4 w-20 h-20 bg-white rounded-full blur-xl animate-pulse-slow"></div>
-                <div className="absolute bottom-4 left-4 w-16 h-16 bg-white rounded-full blur-lg animate-pulse-slow delay-1000"></div>
-              </div>
-              
-              <div className="relative z-10 h-full flex flex-col justify-between text-white">
-                <div>
-                  <div className="text-4xl sm:text-3xl mb-2 md:mb-1 group-hover:scale-110 transition-transform duration-500">
-                    {skill.icon}
+              {cat.title}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Grid */}
+      <div className="band-column p-6 sm:p-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {visibleCategories.map((category) => (
+            <div
+              key={category.title}
+              className="p-6 rounded-xl border border-[#e5e5e5] bg-white hover:border-[#1f2328] transition-colors flex flex-col justify-between shadow-sm"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-10 h-10 rounded-lg bg-[#f6f6f6] border border-[#e5e5e5] flex items-center justify-center text-[#1f2328]">
+                    <category.icon size={20} />
                   </div>
-                  <h3 className="text-xl md:text-lg font-bold mb-4 md:mb-2 group-hover:text-yellow-200 transition-colors duration-300">
-                    {skill.title}
-                  </h3>
+                  <span className="font-mono text-[10px] text-[#59636e] uppercase tracking-wider">
+                    {category.tag}
+                  </span>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {skill.skills.map((skillItem, skillIndex) => (
+
+                <h3 className="font-bold text-lg text-[#1f2328] mb-1">
+                  {category.title}
+                </h3>
+
+                <p className="text-xs text-[#59636e] font-light leading-relaxed mb-5">
+                  {category.description}
+                </p>
+
+                <div className="space-y-2.5">
+                  {category.skills.map((skill) => (
                     <div
-                      key={skillItem.name}
-                      className="flex items-center gap-2 bg-white/20 text-white border-white/30 px-2 py-1 text-xs md:text-sm font-medium backdrop-blur-sm hover:bg-white/30 transition-all duration-300 group-hover:scale-105 rounded-full"
-                      style={{
-                        animationDelay: `${(index * 150) + (skillIndex * 100)}ms`
-                      }}
+                      key={skill.name}
+                      className="p-2.5 rounded-lg bg-[#f8fafc] border border-[#e2e8f0]"
                     >
-                      <span className="text-base md:text-lg">{skillItem.icon}</span>
-                      <span>{skillItem.name}</span>
+                      <div className="flex items-center justify-between">
+                        <span className="font-semibold text-xs text-[#0f172a]">
+                          {skill.name}
+                        </span>
+                        <span className="font-mono text-[10px] text-[#0969da] font-bold">
+                          {skill.level}
+                        </span>
+                      </div>
+                      {skill.note && (
+                        <div className="text-[10px] font-mono text-[#64748b] mt-0.5">
+                          {skill.note}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
               </div>
-              
-              {/* Hover overlay effect */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+              <div className="mt-5 pt-3 border-t border-[#f0f0f0] flex items-center justify-between text-[11px] font-mono text-[#59636e]">
+                <span>Status</span>
+                <span className="text-[#166534] font-bold flex items-center gap-1">
+                  <Check size={12} />
+                  <span>Production Tested</span>
+                </span>
+              </div>
             </div>
           ))}
         </div>
-
-        {/* Floating elements for extra visual appeal */}
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse-slow"></div>
-        <div className="absolute top-3/4 right-1/4 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse-slow delay-700"></div>
       </div>
     </section>
   );
